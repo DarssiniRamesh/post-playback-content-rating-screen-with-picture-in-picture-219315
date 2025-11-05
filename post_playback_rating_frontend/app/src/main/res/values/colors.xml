@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- TV optimized colors -->
+    <!-- TV optimized colors mapped to Figma tokens -->
+    <!-- Figma: color_39393e -->
     <color name="tv_background">#39393e</color>
     <color name="tv_overlay">#CC000000</color>
-    <color name="tv_primary">#FFFFFF</color>
-    <color name="tv_secondary">#CCCCCC</color>
-    <color name="tv_accent">#FFE500</color>
+    <!-- Figma: color_ffffff -->
+    <color name="tv_primary">#ffffff</color>
+    <!-- Figma: color_ababab -->
+    <color name="tv_secondary">#ababab</color>
+    <!-- Figma: color_ffe500 (CTA yellow) -->
+    <color name="tv_accent">#ffe500</color>
+    <!-- Figma: style_41 divider -->
     <color name="tv_divider">#797979</color>
     <color name="tv_black">#000000</color>
+    <!-- Additional neutrals if needed -->
+    <color name="tv_medium_gray">#9a9a9a</color>
 </resources>

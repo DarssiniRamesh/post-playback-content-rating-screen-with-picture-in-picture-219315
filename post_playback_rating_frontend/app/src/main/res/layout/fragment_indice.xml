@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  Índice refined layout to match Figma spacing and typography
+  Key mappings:
+  - Title uses TextAppearance.HeadingXL (~64sp) ← Figma typo_64 (400px)
+  - CTA container: 1680x480dp, radius 32dp ← Figma 1680x480, radius 100px
+  - Helper text spacing 32dp below CTA ← Figma helper block within ~917px group height
+  - Divider thickness 2dp ← Figma 5px
+  - Spacing: large 64dp between major blocks; medium 40dp; small 24/32dp
+  Verified at 1080p baseline with TV overscan-safe padding 48dp
+-->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/scroll_root"
@@ -12,10 +22,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingLeft="48dp"
-        android:paddingRight="48dp"
-        android:paddingTop="48dp"
-        android:paddingBottom="48dp">
+        android:paddingLeft="@dimen/screen_padding_h"
+        android:paddingRight="@dimen/screen_padding_h"
+        android:paddingTop="@dimen/screen_padding_v"
+        android:paddingBottom="@dimen/screen_padding_v">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,13 +39,15 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_marginBottom="@dimen/section_spacing_medium"
                 android:text="@string/indice_title"
+                android:contentDescription="@string/indice_title"
                 android:importantForAccessibility="yes" />
 
             <ImageButton
                 android:id="@+id/btn_instrucciones"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="@dimen/top_icon_size"
+                android:layout_height="@dimen/top_icon_size"
                 android:contentDescription="@string/menu_instrucciones"
                 android:focusable="true"
                 android:background="@android:color/transparent"
@@ -43,19 +55,19 @@
                 app:tint="@color/tv_accent" />
         </LinearLayout>
 
-        <!-- CTA 1 -->
+        <!-- CTA 1 group -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="8dp">
+            android:layout_marginTop="@dimen/section_spacing_large"
+            android:layout_marginBottom="@dimen/section_spacing_small">
 
             <Button
                 android:id="@+id/cta1"
                 style="@style/CtaButton"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_width="@dimen/cta_width"
+                android:layout_height="@dimen/cta_height"
                 android:text="@string/indice_cta1"
                 android:contentDescription="@string/indice_cta1"
                 android:focusable="true" />
@@ -65,29 +77,29 @@
                 style="@style/TextHelper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/indice_helper" />
+                android:layout_marginTop="32dp"
+                android:text="@string/indice_helper"
+                android:maxLines="3" />
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/tv_secondary"
-            android:alpha="0.4" />
+            android:layout_height="@dimen/section_divider_height"
+            android:background="@color/tv_divider" />
 
-        <!-- CTA 2 -->
+        <!-- CTA 2 group -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="8dp">
+            android:layout_marginTop="@dimen/section_spacing_large"
+            android:layout_marginBottom="@dimen/section_spacing_small">
 
             <Button
                 android:id="@+id/cta2"
                 style="@style/CtaButton"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_width="@dimen/cta_width"
+                android:layout_height="@dimen/cta_height"
                 android:text="@string/indice_cta2"
                 android:contentDescription="@string/indice_cta2"
                 android:focusable="true" />
@@ -97,29 +109,29 @@
                 style="@style/TextHelper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/indice_helper" />
+                android:layout_marginTop="32dp"
+                android:text="@string/indice_helper"
+                android:maxLines="3" />
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/tv_secondary"
-            android:alpha="0.4" />
+            android:layout_height="@dimen/section_divider_height"
+            android:background="@color/tv_divider" />
 
-        <!-- CTA 3 -->
+        <!-- CTA 3 group -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="8dp">
+            android:layout_marginTop="@dimen/section_spacing_large"
+            android:layout_marginBottom="@dimen/section_spacing_small">
 
             <Button
                 android:id="@+id/cta3"
                 style="@style/CtaButton"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_width="@dimen/cta_width"
+                android:layout_height="@dimen/cta_height"
                 android:text="@string/indice_cta3"
                 android:contentDescription="@string/indice_cta3"
                 android:focusable="true" />
@@ -129,8 +141,9 @@
                 style="@style/TextHelper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/indice_helper" />
+                android:layout_marginTop="32dp"
+                android:text="@string/indice_helper"
+                android:maxLines="3" />
         </LinearLayout>
 
     </LinearLayout>
