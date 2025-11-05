@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      Figma → Android TV mapping notes (1080p baseline)
+      - 100 px radius ≈ 32dp (rounded corners)
+      - 250 px radius ≈ 64dp (banner/large groups)
+      - Divider 5 px ≈ 2dp (style_41)
+      - CTA size 1680 x 480 px kept literal in dp to preserve visual scale for demo
+      - Spacing tokens derived from large TV-safe spacing from Figma
+    -->
+
+    <!-- CTA tokens (Frame 1682) -->
+    <dimen name="cta_width">1680dp</dimen>    <!-- Figma 1680px → 1680dp (demo fidelity) -->
+    <dimen name="cta_height">480dp</dimen>    <!-- Figma 480px → 480dp -->
+    <dimen name="cta_radius">32dp</dimen>     <!-- Figma radius 100px → 32dp -->
+
+    <!-- Banner/group radii -->
+    <dimen name="banner_radius">64dp</dimen>  <!-- Figma radius ~250px → 64dp -->
+
+    <!-- Dividers -->
+    <dimen name="section_divider_height">2dp</dimen> <!-- Figma 5px → 2dp -->
+
+    <!-- Spacing scale -->
+    <dimen name="section_spacing_large">64dp</dimen>   <!-- large section spacing -->
+    <dimen name="section_spacing_medium">40dp</dimen>  <!-- medium spacing -->
+    <dimen name="section_spacing_small">24dp</dimen>   <!-- small spacing -->
+    <dimen name="title_top_margin">48dp</dimen>        <!-- Figma generous top margin -->
+
+    <!-- Container padding (overscan safe: keep content inset) -->
+    <dimen name="screen_padding_h">48dp</dimen>
+    <dimen name="screen_padding_v">48dp</dimen>
+
+    <!-- Typography line spacing extras to emulate Figma line-heights -->
+    <!-- Use with includeFontPadding=false -->
+    <dimen name="line_extra_heading_xl">8sp</dimen>
+    <dimen name="line_extra_heading_l">6sp</dimen>
+    <dimen name="line_extra_body_l">4sp</dimen>
+    <dimen name="line_extra_caption_l">2sp</dimen>
+
+    <!-- Icon sizes -->
+    <dimen name="top_icon_size">60dp</dimen>
+
+    <!-- Focus scaling factor reference (applied via state/anim, not a direct dimen) -->
+    <!-- Focused scale ≈ 1.05 -->
+</resources>

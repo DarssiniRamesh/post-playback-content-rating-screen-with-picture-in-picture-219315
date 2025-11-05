@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/proto_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/tv_background"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="48dp">
+
+    <TextView
+        android:id="@+id/proto_title"
+        style="@style/TextHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Prototipo (stub)"
+        android:contentDescription="Prototipo" />
+
+    <TextView
+        android:id="@+id/proto_desc"
+        style="@style/TextBody"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Pantalla de demostración. Presiona Back para volver al Índice." />
+</LinearLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">post_playback_rating_frontend</string>
+
+    <!-- Rating Screen Strings -->
+    <string name="rating_title">Did you like it?</string>
+    <string name="rating_message">Your vote helps us recommend more content like this.</string>
+    <string name="rating_like">I like it</string>
+    <string name="rating_love">I love it</string>
+    <string name="rating_dislike" translatable="false">I do not like it</string>
+    <string name="rating_close">Close</string>
+    <string name="rating_countdown">Closing in %d seconds</string>
+
+    <!-- Índice / Instrucciones -->
+    <string name="indice_title">Índice de prototipos</string>
+    <string name="indice_section1_header">Entrada y salida de calificador de contenidos</string>
+    <string name="indice_section2_header">Navegación por el Calificador de Contenidos</string>
+    <string name="indice_section3_header">Comportamiento de notificación al calificar el contenido.</string>
+    <string name="indice_cta1">Click aquí para iniciar prototipo 1</string>
+    <string name="indice_cta2">Click aquí para iniciar prototipo 2</string>
+    <string name="indice_cta3">Click aquí para iniciar prototipo 3</string>
+    <string name="indice_helper">Da click en el botón amarillo para visualizar las interacciones descritas en el guión</string>
+    <string name="menu_instrucciones">Instrucciones</string>
+
+    <string name="instrucciones_title">¿Cómo consumir estos prototipos?</string>
+    <string name="instrucciones_anchor_title">Ir al título</string>
+    <string name="instrucciones_anchor_cta">Ir al ejemplo de CTA</string>
+    <string name="instrucciones_anchor_mainshot">Ir a captura principal</string>
+    <string name="instrucciones_anchor_step_a">Ir al paso a</string>
+    <string name="instrucciones_anchor_step_b">Ir al paso b</string>
+    <string name="instrucciones_anchor_left">Ir a instrucciones laterales</string>
+    <string name="instrucciones_anchor_restart">Ir a nota de reinicio</string>
+
+    <!-- Web demo -->
+    <string name="webview_demo_title">Web Demo</string>
+</resources>

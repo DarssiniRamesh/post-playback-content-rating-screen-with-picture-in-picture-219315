@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme for Android TV -->
+    <style name="AppTheme" parent="Theme.Leanback">
+        <item name="android:windowBackground">@color/tv_background</item>
+        <item name="android:colorPrimary">@color/tv_accent</item>
+    </style>
+
+    <!--
+      Typography textAppearances (Figma → Android TV)
+      - headingXL (typo_64): Figma ~400px → 64sp, bold; extra line spacing to simulate tall line height
+      - headingL  (typo_65): Figma 200px → 40sp, bold
+      - bodyL     (typo_69/66): Figma 200px/100px → 20sp regular
+      - captionL  (typo_68): Figma 100px → 18sp regular (secondary)
+      Use includeFontPadding=false and lineSpacingExtra to approximate Figma line-heights.
+    -->
+    <style name="TextAppearance.HeadingXL" parent="@android:style/TextAppearance">
+        <item name="android:textSize">64sp</item>
+        <item name="android:textColor">@color/tv_primary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:lineSpacingExtra">@dimen/line_extra_heading_xl</item>
+    </style>
+
+    <style name="TextAppearance.HeadingL" parent="@android:style/TextAppearance">
+        <item name="android:textSize">40sp</item>
+        <item name="android:textColor">@color/tv_primary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:lineSpacingExtra">@dimen/line_extra_heading_l</item>
+    </style>
+
+    <style name="TextAppearance.BodyL" parent="@android:style/TextAppearance">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/tv_primary</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:lineSpacingExtra">@dimen/line_extra_body_l</item>
+    </style>
+
+    <style name="TextAppearance.CaptionL" parent="@android:style/TextAppearance">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/tv_secondary</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:lineSpacingExtra">@dimen/line_extra_caption_l</item>
+    </style>
+
+    <!-- Backward compatibility with existing style names -->
+    <style name="TextTitleXL" parent="TextAppearance.HeadingXL"/>
+    <style name="TextHeader" parent="TextAppearance.HeadingL"/>
+    <style name="TextBody" parent="TextAppearance.BodyL"/>
+    <style name="TextHelper" parent="TextAppearance.CaptionL"/>
+
+    <!-- CTA button style with radius and focus state guidelines -->
+    <style name="CtaButton">
+        <!-- Background with radius applied via shape below -->
+        <item name="android:background">@drawable/shape_cta_button</item>
+        <item name="android:textColor">@color/tv_black</item>
+        <!-- CTA label approximates typo_67; keep TV-friendly size -->
+        <item name="android:textSize">36sp</item>
+        <item name="android:minHeight">@dimen/cta_height</item>
+        <item name="android:paddingLeft">32dp</item>
+        <item name="android:paddingRight">32dp</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+    </style>
+</resources>

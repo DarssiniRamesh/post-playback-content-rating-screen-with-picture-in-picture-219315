@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  CTA Button background
+  - Default: yellow fill (#ffe500) with radius from @dimen/cta_radius
+  - Focused: white stroke 3dp + slight elevation-like outer ring handled by scale in code or stateListAnimator if added later
+  - Pressed: darken slightly
+  Figma: style_38 / radius 100px → 32dp
+-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/cta_radius"/>
+            <solid android:color="#FFD900"/>
+        </shape>
+    </item>
+    <item android:state_focused="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/cta_radius"/>
+            <solid android:color="@color/tv_accent"/>
+            <stroke android:width="3dp" android:color="@color/tv_primary"/>
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/cta_radius"/>
+            <solid android:color="@color/tv_accent"/>
+        </shape>
+    </item>
+</selector>

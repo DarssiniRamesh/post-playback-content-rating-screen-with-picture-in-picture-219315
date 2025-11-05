@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Instrucciones refined layout
+  - Title uses HeadingXL
+  - Anchors aligned with section_spacing_* tokens for consistent rhythm
+  - WebView demo CTA uses same CTA style; height kept smaller than 480 to represent example link
+  - Figma-to-dp notes:
+    * Title top margin ~48dp
+    * Spacing between header and anchors: medium (40dp)
+    * Spacing between rows/CTAs and descriptions: small (24dp)
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/instrucciones_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/screen_padding_h"
+    android:paddingRight="@dimen/screen_padding_h"
+    android:paddingTop="@dimen/screen_padding_v"
+    android:paddingBottom="@dimen/screen_padding_v"
+    android:background="@color/tv_background">
+
+    <TextView
+        android:id="@+id/header"
+        style="@style/TextTitleXL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/instrucciones_title"
+        android:contentDescription="@string/instrucciones_title" />
+
+    <LinearLayout
+        android:id="@+id/anchors_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/section_spacing_medium"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/anchor_up"
+            style="@style/CtaButton"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_weight="1"
+            android:text="@string/instrucciones_anchor_title"
+            android:contentDescription="@string/instrucciones_anchor_title"
+            android:focusable="true" />
+
+        <View
+            android:layout_width="@dimen/section_spacing_small"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/anchor_down"
+            style="@style/CtaButton"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_weight="1"
+            android:text="@string/instrucciones_anchor_cta"
+            android:contentDescription="@string/instrucciones_anchor_cta"
+            android:focusable="true" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_web_demo"
+        style="@style/CtaButton"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginTop="@dimen/section_spacing_medium"
+        android:text="@string/webview_demo_title"
+        android:contentDescription="@string/webview_demo_title"
+        android:focusable="true" />
+
+    <TextView
+        android:id="@+id/desc"
+        style="@style/TextBody"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/section_spacing_small"
+        android:maxLines="4"
+        android:ellipsize="end"
+        android:text="Navega con ↑ y ↓ entre los anclajes. Abre la vista Web para ver el prototipo HTML." />
+</LinearLayout>
