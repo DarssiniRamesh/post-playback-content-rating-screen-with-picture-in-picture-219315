@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   Instrucciones refined layout
-  - Title uses HeadingXL
+  - Title uses HeadingXL (typo_64 mapping)
   - Anchors aligned with section_spacing_* tokens for consistent rhythm
-  - WebView demo CTA uses same CTA style; height kept smaller than 480 to represent example link
-  - Figma-to-dp notes:
-    * Title top margin ~48dp
-    * Spacing between header and anchors: medium (40dp)
-    * Spacing between rows/CTAs and descriptions: small (24dp)
+  - WebView demo CTA uses same CTA style; height 120dp (smaller than 480dp showcase)
+  Figma→dp notes @1080p:
+    * Title top margin: 48dp
+    * Spacing header→anchors: 40dp
+    * Spacing rows/CTAs→desc: 24dp
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/instrucciones_root"
@@ -40,7 +40,7 @@
             android:id="@+id/anchor_up"
             style="@style/CtaButton"
             android:layout_width="0dp"
-            android:layout_height="120dp"
+            android:layout_height="@dimen/cta_min_height_native"
             android:layout_weight="1"
             android:text="@string/instrucciones_anchor_title"
             android:contentDescription="@string/instrucciones_anchor_title"
@@ -54,7 +54,7 @@
             android:id="@+id/anchor_down"
             style="@style/CtaButton"
             android:layout_width="0dp"
-            android:layout_height="120dp"
+            android:layout_height="@dimen/cta_min_height_native"
             android:layout_weight="1"
             android:text="@string/instrucciones_anchor_cta"
             android:contentDescription="@string/instrucciones_anchor_cta"
@@ -65,7 +65,7 @@
         android:id="@+id/btn_web_demo"
         style="@style/CtaButton"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="@dimen/cta_min_height_native"
         android:layout_marginTop="@dimen/section_spacing_medium"
         android:text="@string/webview_demo_title"
         android:contentDescription="@string/webview_demo_title"

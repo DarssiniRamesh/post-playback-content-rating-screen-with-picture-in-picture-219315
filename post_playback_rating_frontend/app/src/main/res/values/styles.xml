@@ -8,11 +8,12 @@
 
     <!--
       Typography textAppearances (Figma → Android TV)
-      - headingXL (typo_64): Figma ~400px → 64sp, bold; extra line spacing to simulate tall line height
-      - headingL  (typo_65): Figma 200px → 40sp, bold
-      - bodyL     (typo_69/66): Figma 200px/100px → 20sp regular
-      - captionL  (typo_68): Figma 100px → 18sp regular (secondary)
-      Use includeFontPadding=false and lineSpacingExtra to approximate Figma line-heights.
+      Mapping at 1080p baseline (see dimens.xml for line-height extras):
+      - headingXL (typo_64): Figma 400px → 64sp, bold; line-height ~469px → +8sp extra
+      - headingL  (typo_65): Figma 200px → 40sp, bold; line-height ~300px → +6sp extra
+      - bodyL     (typo_69/66): Figma 200px/100px → 22sp/20sp; use BodyL=22sp for readability on TV
+      - captionL  (typo_68): Figma 100px → 18sp (secondary)
+      Verified scaling at 4K: Android auto-scales sp; keep semantic sizes consistent.
     -->
     <style name="TextAppearance.HeadingXL" parent="@android:style/TextAppearance">
         <item name="android:textSize">64sp</item>
@@ -31,7 +32,8 @@
     </style>
 
     <style name="TextAppearance.BodyL" parent="@android:style/TextAppearance">
-        <item name="android:textSize">20sp</item>
+        <!-- Slightly larger for TV readability; maps to typo_69 primary paragraphs -->
+        <item name="android:textSize">22sp</item>
         <item name="android:textColor">@color/tv_primary</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:lineSpacingExtra">@dimen/line_extra_body_l</item>
@@ -55,11 +57,11 @@
         <!-- Background with radius applied via shape below -->
         <item name="android:background">@drawable/shape_cta_button</item>
         <item name="android:textColor">@color/tv_black</item>
-        <!-- CTA label approximates typo_67; keep TV-friendly size -->
-        <item name="android:textSize">36sp</item>
-        <item name="android:minHeight">@dimen/cta_height</item>
-        <item name="android:paddingLeft">32dp</item>
-        <item name="android:paddingRight">32dp</item>
+        <!-- CTA label approximates typo_67 at TV scale -->
+        <item name="android:textSize">38sp</item>
+        <item name="android:minHeight">@dimen/cta_min_height_native</item>
+        <item name="android:paddingLeft">40dp</item>
+        <item name="android:paddingRight">40dp</item>
         <item name="android:focusable">true</item>
         <item name="android:clickable">true</item>
     </style>

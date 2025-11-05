@@ -5,13 +5,15 @@
       - 100 px radius ≈ 32dp (rounded corners)
       - 250 px radius ≈ 64dp (banner/large groups)
       - Divider 5 px ≈ 2dp (style_41)
-      - CTA size 1680 x 480 px kept literal in dp to preserve visual scale for demo
+      - CTA size 1680 x 480 px kept literal in dp for demo parity (for production, prefer percentage-based width with 1:3.5 ratio)
       - Spacing tokens derived from large TV-safe spacing from Figma
+      4K scaling note: Android scales dp/sp; verify focus rings and outlines remain ≥2dp at 1080p (→ 4dp at 4K).
     -->
 
     <!-- CTA tokens (Frame 1682) -->
     <dimen name="cta_width">1680dp</dimen>    <!-- Figma 1680px → 1680dp (demo fidelity) -->
     <dimen name="cta_height">480dp</dimen>    <!-- Figma 480px → 480dp -->
+    <dimen name="cta_min_height_native">120dp</dimen> <!-- Native smaller CTA height used on Instrucciones/Overlay rows -->
     <dimen name="cta_radius">32dp</dimen>     <!-- Figma radius 100px → 32dp -->
 
     <!-- Banner/group radii -->
@@ -21,12 +23,13 @@
     <dimen name="section_divider_height">2dp</dimen> <!-- Figma 5px → 2dp -->
 
     <!-- Spacing scale -->
-    <dimen name="section_spacing_large">64dp</dimen>   <!-- large section spacing -->
-    <dimen name="section_spacing_medium">40dp</dimen>  <!-- medium spacing -->
-    <dimen name="section_spacing_small">24dp</dimen>   <!-- small spacing -->
-    <dimen name="title_top_margin">48dp</dimen>        <!-- Figma generous top margin -->
+    <dimen name="section_spacing_xlarge">72dp</dimen>
+    <dimen name="section_spacing_large">64dp</dimen>
+    <dimen name="section_spacing_medium">40dp</dimen>
+    <dimen name="section_spacing_small">24dp</dimen>
+    <dimen name="title_top_margin">48dp</dimen>
 
-    <!-- Container padding (overscan safe: keep content inset) -->
+    <!-- Container padding (overscan safe: keep content inset ≥ 48dp) -->
     <dimen name="screen_padding_h">48dp</dimen>
     <dimen name="screen_padding_v">48dp</dimen>
 
@@ -34,12 +37,22 @@
     <!-- Use with includeFontPadding=false -->
     <dimen name="line_extra_heading_xl">8sp</dimen>
     <dimen name="line_extra_heading_l">6sp</dimen>
-    <dimen name="line_extra_body_l">4sp</dimen>
+    <dimen name="line_extra_body_l">6sp</dimen>
     <dimen name="line_extra_caption_l">2sp</dimen>
 
     <!-- Icon sizes -->
     <dimen name="top_icon_size">60dp</dimen>
 
-    <!-- Focus scaling factor reference (applied via state/anim, not a direct dimen) -->
-    <!-- Focused scale ≈ 1.05 -->
+    <!-- Rating overlay specific dims -->
+    <dimen name="rating_title_margin_top">24dp</dimen>
+    <dimen name="rating_helper_margin_top">12dp</dimen>
+    <dimen name="rating_countdown_margin_top">12dp</dimen>
+    <dimen name="rating_actions_margin_top">24dp</dimen>
+    <dimen name="rating_actions_gap_h">24dp</dimen>
+    <dimen name="rating_actions_button_width">300dp</dimen>
+    <dimen name="rating_actions_button_height">120dp</dimen>
+    <dimen name="rating_pip_width">360dp</dimen>  <!-- Slightly larger for clarity on 1080p -->
+    <dimen name="rating_pip_height">203dp</dimen> <!-- 16:9 -->
+    <dimen name="rating_pip_margin_start">64dp</dimen>
+    <dimen name="rating_pip_margin_top">64dp</dimen>
 </resources>

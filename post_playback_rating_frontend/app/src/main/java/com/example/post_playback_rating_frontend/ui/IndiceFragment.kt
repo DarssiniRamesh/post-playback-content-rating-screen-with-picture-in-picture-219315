@@ -14,6 +14,9 @@ import com.example.post_playback_rating_frontend.R
 /**
  * Índice screen with three CTA buttons and a menu button to Instrucciones.
  * DPAD Up/Down to navigate, Enter to select, Back handled by Activity.
+ * Figma parity:
+ * - CTA sizes: 1680x480dp demo fidelity; helper spacing ~32dp.
+ * - Divider thickness: 2dp (style_41).
  */
 class IndiceFragment : Fragment() {
 
@@ -64,6 +67,7 @@ class IndiceFragment : Fragment() {
         // DPAD ordering: focus moves vertically among CTAs; initial focus cta1
         cta1.requestFocus()
         setupFocusTransitions()
+
         // Handle Enter via default button; Back handled by Activity
         view.isFocusableInTouchMode = true
         view.requestFocus()
@@ -91,11 +95,15 @@ class IndiceFragment : Fragment() {
     }
 
     private fun setupFocusTransitions() {
+        // Keep focus flow strictly between CTAs to match vertical action stack.
         cta1.nextFocusDownId = R.id.cta2
+        cta1.nextFocusUpId = R.id.cta1
+
         cta2.nextFocusDownId = R.id.cta3
         cta2.nextFocusUpId = R.id.cta1
+
         cta3.nextFocusUpId = R.id.cta2
-        // Keep focus within CTAs vertically; instrucciones reachable via long-press menu or back stack by button click
+        cta3.nextFocusDownId = R.id.cta3
     }
 
     private fun openPrototype(idx: Int) {

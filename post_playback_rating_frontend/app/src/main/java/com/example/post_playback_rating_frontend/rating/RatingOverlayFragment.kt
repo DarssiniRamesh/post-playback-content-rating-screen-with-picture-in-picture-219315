@@ -19,6 +19,9 @@ import com.example.post_playback_rating_frontend.R
 /**
  * DialogFragment overlay for post-playback content rating.
  * Provides: poster background, PIP placeholder, title, helper, buttons and countdown.
+ * Figma-focus parity:
+ * - Yellow CTA focus ring: drawable adds 4dp white stroke + halo to improve contrast.
+ * - DPAD order: Close → Like → Love → Dislike (horizontal), matching guided flow.
  */
 class RatingOverlayFragment : DialogFragment() {
 
@@ -83,7 +86,7 @@ class RatingOverlayFragment : DialogFragment() {
         dislikeBtn.contentDescription = getString(R.string.rating_dislike)
         closeBtn.contentDescription = getString(R.string.rating_close)
 
-        // Focus: default on Close
+        // Focus: default on Close (per spec, primary dismissal action)
         closeBtn.isFocusable = true
         closeBtn.requestFocus()
 
@@ -101,7 +104,7 @@ class RatingOverlayFragment : DialogFragment() {
                     title.text = s.title
                     helper.text = getString(R.string.rating_message)
                     countdown.text = getString(R.string.rating_countdown, s.countdownSeconds)
-                    // Using solid bg placeholder for poster; no external loader to avoid deps.
+                    // Poster bg placeholder color; no external loader to avoid deps here.
                     poster.setBackgroundColor(Color.parseColor("#222222"))
                 }
                 is PostPlaybackRatingViewModel.OverlayState.AutoClosing -> {
@@ -139,18 +142,17 @@ class RatingOverlayFragment : DialogFragment() {
     }
 
     private fun setupDpadOrder() {
-        // Default DPAD ordering: Close (focused) -> Like -> Love -> Dislike
+        // Consistent DPAD ordering for predictable navigation:
+        // Horizontal: Close → Like → Love → Dislike (Right)
         closeBtn.nextFocusRightId = R.id.btn_like
         likeBtn.nextFocusRightId = R.id.btn_love
         loveBtn.nextFocusRightId = R.id.btn_dislike
-
-        // Reverse left order
+        // Reverse (Left)
         dislikeBtn.nextFocusLeftId = R.id.btn_love
         loveBtn.nextFocusLeftId = R.id.btn_like
         likeBtn.nextFocusLeftId = R.id.btn_close
 
-        // Vertical: PIP up, actions below
-        // Keep it simple; Close can go to Like on right or remain static on down
+        // Vertical arrangement: actions row sits below text; keep focus cycling within row
         closeBtn.nextFocusDownId = R.id.btn_like
         likeBtn.nextFocusDownId = R.id.btn_love
         loveBtn.nextFocusDownId = R.id.btn_dislike

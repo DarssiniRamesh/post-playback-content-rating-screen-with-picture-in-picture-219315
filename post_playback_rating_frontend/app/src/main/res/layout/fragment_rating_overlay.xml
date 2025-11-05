@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   Post-Playback Rating Overlay for Android TV
-  - Overscan safe margins
-  - Landscape only
-  - DPAD focus among buttons; Close default focus
+  Figma mapping and spacing notes (1080p baseline):
+  - PIP: 16:9 container placed within overscan-safe margins (≥64dp from top/start)
+  - Title: HeadingL (40sp) with 24dp top margin from PIP bottom
+  - Helper: BodyL with 12dp top margin from title
+  - Countdown: CaptionL with 12dp top margin from helper
+  - Actions: horizontal row with 24dp gap; buttons 300x120dp, radius 32dp; Close default focus
+  4K: all dp scale up; focus ring remains ≥4dp (drawable), ensuring visibility.
 -->
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -39,14 +43,14 @@
     <!-- PIP placeholder box (top-left safe area) -->
     <View
         android:id="@+id/pip_placeholder"
-        android:layout_width="320dp"
-        android:layout_height="180dp"
+        android:layout_width="@dimen/rating_pip_width"
+        android:layout_height="@dimen/rating_pip_height"
         android:background="#202020"
         android:contentDescription="@string/rating_pip_desc"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginLeft="64dp"
-        android:layout_marginTop="64dp" />
+        android:layout_marginStart="@dimen/rating_pip_margin_start"
+        android:layout_marginTop="@dimen/rating_pip_margin_top" />
 
     <!-- Title -->
     <TextView
@@ -59,9 +63,9 @@
         app:layout_constraintTop_toBottomOf="@id/pip_placeholder"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="64dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginTop="24dp" />
+        android:layout_marginStart="@dimen/rating_pip_margin_start"
+        android:layout_marginEnd="@dimen/rating_pip_margin_start"
+        android:layout_marginTop="@dimen/rating_title_margin_top" />
 
     <!-- Helper -->
     <TextView
@@ -73,7 +77,7 @@
         app:layout_constraintTop_toBottomOf="@id/rating_title"
         app:layout_constraintStart_toStartOf="@id/rating_title"
         app:layout_constraintEnd_toEndOf="@id/rating_title"
-        android:layout_marginTop="12dp" />
+        android:layout_marginTop="@dimen/rating_helper_margin_top" />
 
     <!-- Countdown -->
     <TextView
@@ -84,7 +88,7 @@
         android:text="@string/rating_countdown"
         app:layout_constraintTop_toBottomOf="@id/rating_helper"
         app:layout_constraintStart_toStartOf="@id/rating_helper"
-        android:layout_marginTop="12dp" />
+        android:layout_marginTop="@dimen/rating_countdown_margin_top" />
 
     <!-- Actions row -->
     <LinearLayout
@@ -94,49 +98,49 @@
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@id/countdown_label"
         app:layout_constraintStart_toStartOf="@id/rating_helper"
-        android:layout_marginTop="24dp">
+        android:layout_marginTop="@dimen/rating_actions_margin_top">
 
         <Button
             android:id="@+id/btn_close"
             style="@style/CtaButton"
-            android:layout_width="300dp"
-            android:layout_height="120dp"
+            android:layout_width="@dimen/rating_actions_button_width"
+            android:layout_height="@dimen/rating_actions_button_height"
             android:text="@string/rating_close"
             android:focusable="true" />
 
         <View
-            android:layout_width="24dp"
+            android:layout_width="@dimen/rating_actions_gap_h"
             android:layout_height="1dp" />
 
         <Button
             android:id="@+id/btn_like"
             style="@style/CtaButton"
-            android:layout_width="300dp"
-            android:layout_height="120dp"
+            android:layout_width="@dimen/rating_actions_button_width"
+            android:layout_height="@dimen/rating_actions_button_height"
             android:text="@string/rating_like"
             android:focusable="true" />
 
         <View
-            android:layout_width="24dp"
+            android:layout_width="@dimen/rating_actions_gap_h"
             android:layout_height="1dp" />
 
         <Button
             android:id="@+id/btn_love"
             style="@style/CtaButton"
-            android:layout_width="300dp"
-            android:layout_height="120dp"
+            android:layout_width="@dimen/rating_actions_button_width"
+            android:layout_height="@dimen/rating_actions_button_height"
             android:text="@string/rating_love"
             android:focusable="true" />
 
         <View
-            android:layout_width="24dp"
+            android:layout_width="@dimen/rating_actions_gap_h"
             android:layout_height="1dp" />
 
         <Button
             android:id="@+id/btn_dislike"
             style="@style/CtaButton"
-            android:layout_width="300dp"
-            android:layout_height="120dp"
+            android:layout_width="@dimen/rating_actions_button_width"
+            android:layout_height="@dimen/rating_actions_button_height"
             android:text="@string/rating_dislike"
             android:focusable="true" />
     </LinearLayout>

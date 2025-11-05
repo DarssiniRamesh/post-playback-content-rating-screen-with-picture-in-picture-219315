@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   Índice refined layout to match Figma spacing and typography
-  Key mappings:
-  - Title uses TextAppearance.HeadingXL (~64sp) ← Figma typo_64 (400px)
+  Figma → Android mapping references (1080p baseline):
+  - Title: typo_64 → TextTitleXL (64sp, +8sp line extra)
   - CTA container: 1680x480dp, radius 32dp ← Figma 1680x480, radius 100px
-  - Helper text spacing 32dp below CTA ← Figma helper block within ~917px group height
-  - Divider thickness 2dp ← Figma 5px
-  - Spacing: large 64dp between major blocks; medium 40dp; small 24/32dp
-  Verified at 1080p baseline with TV overscan-safe padding 48dp
+  - Helper margin: 32dp under CTA (fits in ~917dp group height)
+  - Divider thickness: 2dp ← Figma 5px
+  - Spacing tokens: large 64dp; medium 40dp; small 24–32dp
+  4K note: dp/sp auto-scale; focus outline minimum 4dp at 4K ensured by drawable.
 -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"

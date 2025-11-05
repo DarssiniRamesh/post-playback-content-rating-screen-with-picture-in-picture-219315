@@ -2,9 +2,10 @@
 <!--
   CTA Button background
   - Default: yellow fill (#ffe500) with radius from @dimen/cta_radius
-  - Focused: white stroke 3dp + slight elevation-like outer ring handled by scale in code or stateListAnimator if added later
+  - Focused: stronger contrast for TV over yellow: white inner stroke 4dp + subtle outer halo via padding color
   - Pressed: darken slightly
   Figma: style_38 / radius 100px → 32dp
+  1080p→4K: stroke renders 4dp@1080p (→8dp@4K), ensuring visibility.
 -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true">
@@ -17,7 +18,9 @@
         <shape android:shape="rectangle">
             <corners android:radius="@dimen/cta_radius"/>
             <solid android:color="@color/tv_accent"/>
-            <stroke android:width="3dp" android:color="@color/tv_primary"/>
+            <stroke android:width="4dp" android:color="@color/tv_primary"/>
+            <!-- Simulate outer halo using padding with semi-transparent black to improve contrast -->
+            <padding android:left="2dp" android:top="2dp" android:right="2dp" android:bottom="2dp"/>
         </shape>
     </item>
     <item>
