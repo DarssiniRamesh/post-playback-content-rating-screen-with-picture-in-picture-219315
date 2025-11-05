@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/instrucciones_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="48dp"
+    android:paddingRight="48dp"
+    android:paddingTop="48dp"
+    android:paddingBottom="48dp"
+    android:background="@color/tv_background">
+
+    <TextView
+        android:id="@+id/header"
+        style="@style/TextTitleXL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/instrucciones_title" />
+
+    <LinearLayout
+        android:id="@+id/anchors_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/anchor_up"
+            style="@style/CtaButton"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:text="@string/instrucciones_anchor_title"
+            android:focusable="true" />
+
+        <Button
+            android:id="@+id/anchor_down"
+            style="@style/CtaButton"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:text="@string/instrucciones_anchor_cta"
+            android:focusable="true" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_web_demo"
+        style="@style/CtaButton"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/webview_demo_title"
+        android:focusable="true" />
+
+    <TextView
+        android:id="@+id/desc"
+        style="@style/TextBody"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Navega con ↑ y ↓ entre los anclajes. Abre la vista Web para ver el prototipo HTML." />
+</LinearLayout>

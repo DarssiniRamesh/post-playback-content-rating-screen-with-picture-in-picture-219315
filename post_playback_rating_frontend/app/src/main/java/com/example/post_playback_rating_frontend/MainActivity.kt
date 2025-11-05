@@ -1,43 +1,39 @@
 package com.example.post_playback_rating_frontend
 
 import android.os.Bundle
-import androidx.fragment.app.FragmentActivity
 import android.view.KeyEvent
-import android.widget.TextView
+import androidx.fragment.app.FragmentActivity
+import com.example.post_playback_rating_frontend.ui.IndiceFragment
 
 /**
- * Main Activity for Android TV
- * Extends FragmentActivity for Leanback compatibility
+ * Main Activity for Android TV.
+ * Hosts the app's fragments and manages back navigation.
  */
 class MainActivity : FragmentActivity() {
-
-    private lateinit var titleText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        
-        titleText = findViewById(R.id.title_text)
-        titleText.text = "post_playback_rating_frontend"
-        
-        // TODO: Initialize your rating screen components here
-        // setupRatingOverlay()
+
+        // Load Índice on first launch
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, IndiceFragment.newInstance())
+                .commitNow()
+        }
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-        // Handle TV remote control inputs
-        return when (keyCode) {
-            KeyEvent.KEYCODE_DPAD_CENTER,
-            KeyEvent.KEYCODE_ENTER -> {
-                // Handle SELECT/OK button
-                true
-            }
-            KeyEvent.KEYCODE_BACK -> {
-                // Handle BACK button
-                finish()
-                true
-            }
-            else -> super.onKeyDown(keyCode, event)
+        // Let focused fragment handle key if needed, else default behavior
+        return super.onKeyDown(keyCode, event)
+    }
+
+    override fun onBackPressed() {
+        // Predictable back behavior
+        if (supportFragmentManager.backStackEntryCount > 0) {
+            supportFragmentManager.popBackStack()
+        } else {
+            finish()
         }
     }
 }

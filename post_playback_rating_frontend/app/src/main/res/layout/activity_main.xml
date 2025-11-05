@@ -4,32 +4,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000">
+    android:background="@color/tv_background">
 
-    <TextView
-        android:id="@+id/title_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="post_playback_rating_frontend"
-        android:textSize="48sp"
-        android:textColor="#FFFFFF"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
+    <!-- Fragment host container -->
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="Contenedor de pantallas"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/subtitle_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ready for rating screen integration"
-        android:textSize="24sp"
-        android:textColor="#CCCCCC"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_text" />
-
+        app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,6 +15,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // Default to mock mode ON
+        buildConfigField("boolean", "USE_MOCKS", "true")
     }
 
     buildTypes {
@@ -23,6 +26,21 @@ android {
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
+            )
+        }
+        debug {
+            // Allow overriding via gradle -PuseMocks=false
+            val useMocksProp = project.findProperty("useMocks")?.toString() ?: "true"
+            buildConfigField("boolean", "USE_MOCKS", useMocksProp)
+        }
+    }
+
+    sourceSets {
+        getByName("main") {
+            // Package provided assets into android_asset
+            assets.srcDirs(
+                "src/main/assets",
+                "../../assets"
             )
         }
     }
@@ -38,6 +56,7 @@ android {
 
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -60,19 +79,19 @@ dependencies {
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
     
-    // Networking
+    // Networking (not used yet; behind interfaces)
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
     
-    // ExoPlayer for video
+    // ExoPlayer for video (future)
     implementation("androidx.media3:media3-exoplayer:1.2.1")
     implementation("androidx.media3:media3-ui:1.2.1")
     implementation("androidx.media3:media3-exoplayer-dash:1.2.1")
     implementation("androidx.media3:media3-exoplayer-hls:1.2.1")
     
-    // Image loading
+    // Image loading (future)
     implementation("com.github.bumptech.glide:glide:4.16.0")
     
     // Testing
