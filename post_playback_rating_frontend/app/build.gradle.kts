@@ -18,6 +18,12 @@ android {
 
         // Default to mock mode ON
         buildConfigField("boolean", "USE_MOCKS", "true")
+
+        // Placeholder base URLs for network scaffolding; can be overridden via -P properties
+        buildConfigField("String", "CONTENT_BASE_URL", "\"${project.findProperty("contentBaseUrl") ?: ""}\"")
+        buildConfigField("String", "METADATA_BASE_URL", "\"${project.findProperty("metadataBaseUrl") ?: ""}\"")
+        buildConfigField("String", "ASSETS_BASE_URL", "\"${project.findProperty("assetsBaseUrl") ?: ""}\"")
+        buildConfigField("String", "LIKES_BASE_URL", "\"${project.findProperty("likesBaseUrl") ?: ""}\"")
     }
 
     buildTypes {

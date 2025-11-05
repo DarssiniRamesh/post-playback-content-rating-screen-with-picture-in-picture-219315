@@ -3,6 +3,7 @@ package com.example.post_playback_rating_frontend
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.KeyEvent
 import androidx.activity.viewModels
 import androidx.fragment.app.FragmentActivity
@@ -30,6 +31,10 @@ class MainActivity : FragmentActivity(), RatingOverlayHost {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // Dev indicator: log current data source (Mock/Network)
+        val usingMocks = com.example.post_playback_rating_frontend.data.ServiceLocator.useMocks()
+        Log.i("MainActivity", "Data source: ${if (usingMocks) "Mock" else "Network"}")
 
         // Load Índice on first launch
         if (savedInstanceState == null) {
