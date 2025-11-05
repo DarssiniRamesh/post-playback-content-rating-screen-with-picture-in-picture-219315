@@ -7,12 +7,20 @@ import kotlinx.coroutines.delay
 /** ContentRepository provides content metadata for rating overlay and screens. */
 interface ContentRepository {
     suspend fun getHomeSections(): List<String>
+
+    // PUBLIC_INTERFACE
+    /** Returns minimal content info used by the rating overlay. */
+    suspend fun getContentInfo(contentId: String): ContentInfo
 }
 
 // PUBLIC_INTERFACE
 /** MetadataRepository provides app copy, labels and configuration metadata. */
 interface MetadataRepository {
     suspend fun getIndiceCopy(): IndiceCopy
+
+    // PUBLIC_INTERFACE
+    /** Returns rating overlay settings and rolling credits time in milliseconds from end. */
+    suspend fun getVodRatingSettings(): VodRatingSettings
 }
 
 // PUBLIC_INTERFACE
@@ -49,6 +57,22 @@ data class InstructionImages(
     val restartBar: String
 )
 
+// PUBLIC_INTERFACE
+/** Minimal content info for the overlay. */
+data class ContentInfo(
+    val id: String,
+    val title: String,
+    val posterUrl: String
+)
+
+// PUBLIC_INTERFACE
+/** Rating overlay settings from metadata layer. */
+data class VodRatingSettings(
+    val displayTimeSeconds: Int,
+    val maxDisplayTimeSeconds: Int,
+    val rollingCreditsTimeMs: Long
+)
+
 /**
  * Mock implementations - zero dependency offline mode.
  * These return bundled assets and static strings.
@@ -57,6 +81,15 @@ class MockContentRepository : ContentRepository {
     override suspend fun getHomeSections(): List<String> {
         delay(50) // Simulate quick fetch
         return listOf("Prototipo 1", "Prototipo 2", "Prototipo 3")
+    }
+
+    override suspend fun getContentInfo(contentId: String): ContentInfo {
+        // Static mock content
+        return ContentInfo(
+            id = contentId,
+            title = "The Ocean and the Sky",
+            posterUrl = "file:///android_asset/figmaimages/figma_image_176_1015.png"
+        )
     }
 }
 
@@ -72,6 +105,15 @@ class MockMetadataRepository(private val context: Context) : MetadataRepository 
             cta2 = r.getString(com.example.post_playback_rating_frontend.R.string.indice_cta2),
             cta3 = r.getString(com.example.post_playback_rating_frontend.R.string.indice_cta3),
             helper = r.getString(com.example.post_playback_rating_frontend.R.string.indice_helper),
+        )
+    }
+
+    override suspend fun getVodRatingSettings(): VodRatingSettings {
+        // Return sensible defaults for demo; display capped to <= 60
+        return VodRatingSettings(
+            displayTimeSeconds = 10,
+            maxDisplayTimeSeconds = 60,
+            rollingCreditsTimeMs = 3000L
         )
     }
 }

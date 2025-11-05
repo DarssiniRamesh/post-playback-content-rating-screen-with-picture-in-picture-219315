@@ -10,6 +10,7 @@
     <string name="rating_dislike" translatable="false">I do not like it</string>
     <string name="rating_close">Close</string>
     <string name="rating_countdown">Closing in %d seconds</string>
+    <string name="rating_pip_desc">Mini player showing end credits</string>
 
     <!-- Índice / Instrucciones -->
     <string name="indice_title">Índice de prototipos</string>

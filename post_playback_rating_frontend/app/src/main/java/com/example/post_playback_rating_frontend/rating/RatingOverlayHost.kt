@@ -3,7 +3,7 @@ package com.example.post_playback_rating_frontend.rating
 // PUBLIC_INTERFACE
 /**
  * RatingOverlayHost defines hooks for showing rating overlay and navigation targets.
- * Not implemented yet; fragments/activities can check and call these methods when integrated.
+ * Implemented by MainActivity for mock player integration and routing stubs.
  */
 interface RatingOverlayHost {
     /** Show the rating overlay UI. */
