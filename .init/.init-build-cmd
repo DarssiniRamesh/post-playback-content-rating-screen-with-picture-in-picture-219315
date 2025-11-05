@@ -1,0 +1,4 @@
+{
+    "command": "./gradlew assembleDebug",
+    "working_directory": "/home/kavia/workspace/code-generation/post-playback-content-rating-screen-with-picture-in-picture-219315/post_playback_rating_frontend"
+}
