@@ -75,6 +75,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/rating_message"
+        android:contentDescription="@string/rating_message"
         app:layout_constraintTop_toBottomOf="@id/rating_title"
         app:layout_constraintStart_toStartOf="@id/rating_title"
         app:layout_constraintEnd_toEndOf="@id/rating_title"
@@ -109,6 +110,7 @@
             android:layout_height="@dimen/rating_actions_button_height"
             android:text="@string/rating_close"
             android:contentDescription="@string/rating_close"
+            android:tooltipText="@string/a11y_hint_close"
             android:focusable="true" />
 
         <View
@@ -122,6 +124,7 @@
             android:layout_height="@dimen/rating_actions_button_height"
             android:text="@string/rating_like"
             android:contentDescription="@string/rating_like"
+            android:tooltipText="@string/a11y_hint_like"
             android:focusable="true">
             <requestFocus />
         </Button>
@@ -137,6 +140,7 @@
             android:layout_height="@dimen/rating_actions_button_height"
             android:text="@string/rating_love"
             android:contentDescription="@string/rating_love"
+            android:tooltipText="@string/a11y_hint_love"
             android:focusable="true" />
 
         <View
@@ -150,6 +154,7 @@
             android:layout_height="@dimen/rating_actions_button_height"
             android:text="@string/rating_dislike"
             android:contentDescription="@string/rating_dislike"
+            android:tooltipText="@string/a11y_hint_dislike"
             android:focusable="true" />
     </LinearLayout>
 

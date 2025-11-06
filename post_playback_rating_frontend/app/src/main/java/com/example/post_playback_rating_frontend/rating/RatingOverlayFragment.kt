@@ -100,6 +100,9 @@ class RatingOverlayFragment : DialogFragment() {
         dislikeBtn.contentDescription = getString(R.string.rating_dislike)
         closeBtn.contentDescription = getString(R.string.rating_close)
 
+        // Provide an overall hint for D-pad usage (spoken once when view gains focus)
+        view.contentDescription = getString(R.string.a11y_hint_actions)
+
         // Focus: default on Like button per acceptance criteria
         likeBtn.requestFocus()
 

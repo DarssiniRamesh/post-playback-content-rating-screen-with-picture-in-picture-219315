@@ -2,15 +2,26 @@
 <resources>
     <string name="app_name">post_playback_rating_frontend</string>
 
-    <!-- Rating Screen Strings -->
-    <string name="rating_title">Did you like it?</string>
-    <string name="rating_message">Your vote helps us recommend more content like this.</string>
-    <string name="rating_like">I like it</string>
-    <string name="rating_love">I love it</string>
-    <string name="rating_dislike" translatable="false">I do not like it</string>
+    <!-- Rating Screen Strings (Ocean Professional tone) -->
+    <string name="rating_title">Did you enjoy this title?</string>
+    <string name="rating_message">Your feedback helps us tailor better recommendations for you.</string>
+    <string name="rating_like">Like</string>
+    <string name="rating_love">Love</string>
+    <string name="rating_dislike">Dislike</string>
     <string name="rating_close">Close</string>
-    <string name="rating_countdown">Closing in %d seconds</string>
+    <string name="rating_countdown">Closing in %1$d seconds</string>
     <string name="rating_pip_desc">Mini player showing end credits</string>
+
+    <!-- Rating Screen Accessibility hints -->
+    <string name="a11y_hint_actions">Use left and right on your remote to move between actions. Press select to confirm.</string>
+    <string name="a11y_hint_close">Close the rating overlay and return to the previous screen.</string>
+    <string name="a11y_hint_like">Mark this content as liked.</string>
+    <string name="a11y_hint_love">Mark this content as loved. Strong preference.</string>
+    <string name="a11y_hint_dislike">Mark this content as disliked.</string>
+
+    <!-- Overlay heading/description alternates (if needed elsewhere) -->
+    <string name="overlay_title">Rate your experience</string>
+    <string name="overlay_description">Tell us what you thought. You can close anytime.</string>
 
     <!-- Índice / Instrucciones -->
     <string name="indice_title">Índice de prototipos</string>
