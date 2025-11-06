@@ -81,15 +81,15 @@ class RatingOverlayFragment : DialogFragment() {
         closeBtn = view.findViewById(R.id.btn_close)
         countdown = view.findViewById(R.id.countdown_label)
 
-        // Accessibility content descriptions
+        // Accessibility content descriptions (also set in XML for resilience)
         likeBtn.contentDescription = getString(R.string.rating_like)
         loveBtn.contentDescription = getString(R.string.rating_love)
         dislikeBtn.contentDescription = getString(R.string.rating_dislike)
         closeBtn.contentDescription = getString(R.string.rating_close)
 
-        // Focus: default on Close (per spec, primary dismissal action)
-        closeBtn.isFocusable = true
-        closeBtn.requestFocus()
+        // Focus: default on Like button per acceptance criteria
+        likeBtn.isFocusable = true
+        likeBtn.requestFocus()
 
         setupDpadOrder()
 

@@ -87,6 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/rating_countdown"
+        android:contentDescription="@string/rating_countdown"
         app:layout_constraintTop_toBottomOf="@id/rating_helper"
         app:layout_constraintStart_toStartOf="@id/rating_helper"
         android:layout_marginTop="@dimen/rating_countdown_margin_top" />
@@ -107,6 +108,7 @@
             android:layout_width="@dimen/rating_actions_button_width"
             android:layout_height="@dimen/rating_actions_button_height"
             android:text="@string/rating_close"
+            android:contentDescription="@string/rating_close"
             android:focusable="true" />
 
         <View
@@ -119,7 +121,10 @@
             android:layout_width="@dimen/rating_actions_button_width"
             android:layout_height="@dimen/rating_actions_button_height"
             android:text="@string/rating_like"
-            android:focusable="true" />
+            android:contentDescription="@string/rating_like"
+            android:focusable="true">
+            <requestFocus />
+        </Button>
 
         <View
             android:layout_width="@dimen/rating_actions_gap_h"
@@ -131,6 +136,7 @@
             android:layout_width="@dimen/rating_actions_button_width"
             android:layout_height="@dimen/rating_actions_button_height"
             android:text="@string/rating_love"
+            android:contentDescription="@string/rating_love"
             android:focusable="true" />
 
         <View
@@ -143,6 +149,7 @@
             android:layout_width="@dimen/rating_actions_button_width"
             android:layout_height="@dimen/rating_actions_button_height"
             android:text="@string/rating_dislike"
+            android:contentDescription="@string/rating_dislike"
             android:focusable="true" />
     </LinearLayout>
 
