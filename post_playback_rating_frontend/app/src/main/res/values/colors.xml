@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- TV optimized colors mapped to Figma tokens -->
-    <!-- Figma: color_39393e -->
-    <color name="tv_background">#39393e</color>
-    <color name="tv_overlay">#CC000000</color>
-    <!-- Figma: color_ffffff -->
-    <color name="tv_primary">#ffffff</color>
-    <!-- Figma: color_ababab -->
-    <color name="tv_secondary">#ababab</color>
-    <!-- Figma: color_ffe500 (CTA yellow) -->
-    <color name="tv_accent">#ffe500</color>
-    <!-- Figma: style_41 divider -->
-    <color name="tv_divider">#797979</color>
+    <!-- Ocean Professional theme palette mapped to TV semantics -->
+    <!-- Background surfaces -->
+    <color name="tv_background">#0B1220</color> <!-- Deep desaturated blue-black to fit TV dark theme -->
+    <color name="tv_overlay">#CC0B1220</color> <!-- 80% dim of background for overlays -->
+
+    <!-- Text -->
+    <color name="tv_primary">#FFFFFF</color>    <!-- Primary text on dark -->
+    <color name="tv_secondary">#9CA3AF</color>  <!-- Secondary text (cool gray-400) -->
+
+    <!-- Accents -->
+    <color name="tv_accent">#F59E0B</color>     <!-- Ocean Professional secondary/amber for CTAs -->
+    <color name="tv_accent_pressed">#D48809</color> <!-- Darker amber for pressed state -->
+    <color name="tv_primary_brand">#2563EB</color>  <!-- Primary brand blue for focus ring/borders -->
+    <color name="tv_primary_brand_tint">#93C5FD</color> <!-- Light blue tint for subtle gradients/shadows -->
+
+    <!-- UI lines and neutrals -->
+    <color name="tv_divider">#374151</color>    <!-- Slate-700 like divider -->
     <color name="tv_black">#000000</color>
-    <!-- Additional neutrals if needed -->
-    <color name="tv_medium_gray">#9a9a9a</color>
+    <color name="tv_medium_gray">#6B7280</color> <!-- Slate-500 -->
 </resources>

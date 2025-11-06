@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base application theme for Android TV -->
+    <!-- Base application theme for Android TV using Ocean Professional -->
     <style name="AppTheme" parent="Theme.Leanback">
         <item name="android:windowBackground">@color/tv_background</item>
-        <item name="android:colorPrimary">@color/tv_accent</item>
+        <item name="android:colorPrimary">@color/tv_primary_brand</item>
+        <item name="android:colorAccent">@color/tv_accent</item>
+
+        <!-- Dialog/overlay styling to ensure rating dialog matches theme -->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowFullscreen">true</item>
     </style>
 
-    <!--
-      Typography textAppearances (Figma → Android TV)
-      Mapping at 1080p baseline (see dimens.xml for line-height extras):
-      - headingXL (typo_64): Figma 400px → 64sp, bold; line-height ~469px → +8sp extra
-      - headingL  (typo_65): Figma 200px → 40sp, bold; line-height ~300px → +6sp extra
-      - bodyL     (typo_69/66): Figma 200px/100px → 22sp/20sp; use BodyL=22sp for readability on TV
-      - captionL  (typo_68): Figma 100px → 18sp (secondary)
-      Verified scaling at 4K: Android auto-scales sp; keep semantic sizes consistent.
-    -->
+    <!-- Dialog style for overlay to ensure consistent background dim and no default frame -->
+    <style name="OverlayDialogTheme" parent="Theme.Leanback">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorPrimary">@color/tv_primary_brand</item>
+        <item name="android:colorAccent">@color/tv_accent</item>
+    </style>
+
+    <!-- Typography (Ocean Professional on dark) -->
     <style name="TextAppearance.HeadingXL" parent="@android:style/TextAppearance">
         <item name="android:textSize">64sp</item>
         <item name="android:textColor">@color/tv_primary</item>
@@ -32,7 +37,6 @@
     </style>
 
     <style name="TextAppearance.BodyL" parent="@android:style/TextAppearance">
-        <!-- Slightly larger for TV readability; maps to typo_69 primary paragraphs -->
         <item name="android:textSize">22sp</item>
         <item name="android:textColor">@color/tv_primary</item>
         <item name="android:includeFontPadding">false</item>
@@ -47,17 +51,15 @@
     </style>
 
     <!-- Backward compatibility with existing style names -->
-    <style name="TextTitleXL" parent="TextAppearance.HeadingXL"/>
-    <style name="TextHeader" parent="TextAppearance.HeadingL"/>
-    <style name="TextBody" parent="TextAppearance.BodyL"/>
-    <style name="TextHelper" parent="TextAppearance.CaptionL"/>
+    <style name="TextTitleXL" parent="TextAppearance.HeadingXL" />
+    <style name="TextHeader" parent="TextAppearance.HeadingL" />
+    <style name="TextBody" parent="TextAppearance.BodyL" />
+    <style name="TextHelper" parent="TextAppearance.CaptionL" />
 
-    <!-- CTA button style with radius and focus state guidelines -->
+    <!-- CTA button style with Ocean Professional accents and improved focus outline -->
     <style name="CtaButton">
-        <!-- Background with radius applied via shape below -->
         <item name="android:background">@drawable/shape_cta_button</item>
         <item name="android:textColor">@color/tv_black</item>
-        <!-- CTA label approximates typo_67 at TV scale -->
         <item name="android:textSize">38sp</item>
         <item name="android:minHeight">@dimen/cta_min_height_native</item>
         <item name="android:paddingLeft">40dp</item>

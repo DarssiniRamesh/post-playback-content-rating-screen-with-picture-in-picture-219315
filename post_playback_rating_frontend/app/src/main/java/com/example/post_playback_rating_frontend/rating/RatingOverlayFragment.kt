@@ -53,7 +53,8 @@ class RatingOverlayFragment : DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setStyle(STYLE_NO_TITLE, R.style.AppTheme)
+        // Use a translucent dialog overlay style that inherits the Ocean Professional palette
+        setStyle(STYLE_NO_TITLE, R.style.OverlayDialogTheme)
     }
 
     override fun onStart() {

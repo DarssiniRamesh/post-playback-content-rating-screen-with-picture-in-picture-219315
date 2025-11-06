@@ -1,32 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  CTA Button background
-  - Default: yellow fill (#ffe500) with radius from @dimen/cta_radius
-  - Focused: stronger contrast for TV over yellow: white inner stroke 4dp + subtle outer halo via padding color
-  - Pressed: darken slightly
-  Figma: style_38 / radius 100px → 32dp
-  1080p→4K: stroke renders 4dp@1080p (→8dp@4K), ensuring visibility.
+  CTA Button background (Ocean Professional)
+  - Default: Amber (#F59E0B) with radius from @dimen/cta_radius
+  - Focused: brand blue focus ring (4dp) around amber to improve contrast on TV; subtle outer padding halo
+  - Pressed: darker amber
 -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
-            <corners android:radius="@dimen/cta_radius"/>
-            <solid android:color="#FFD900"/>
+            <corners android:radius="@dimen/cta_radius" />
+            <solid android:color="@color/tv_accent_pressed" />
         </shape>
     </item>
     <item android:state_focused="true">
         <shape android:shape="rectangle">
-            <corners android:radius="@dimen/cta_radius"/>
-            <solid android:color="@color/tv_accent"/>
-            <stroke android:width="4dp" android:color="@color/tv_primary"/>
-            <!-- Simulate outer halo using padding with semi-transparent black to improve contrast -->
-            <padding android:left="2dp" android:top="2dp" android:right="2dp" android:bottom="2dp"/>
+            <corners android:radius="@dimen/cta_radius" />
+            <solid android:color="@color/tv_accent" />
+            <stroke android:width="4dp" android:color="@color/tv_primary_brand" />
+            <padding android:left="2dp" android:top="2dp" android:right="2dp" android:bottom="2dp" />
         </shape>
     </item>
     <item>
         <shape android:shape="rectangle">
-            <corners android:radius="@dimen/cta_radius"/>
-            <solid android:color="@color/tv_accent"/>
+            <corners android:radius="@dimen/cta_radius" />
+            <solid android:color="@color/tv_accent" />
         </shape>
     </item>
 </selector>
