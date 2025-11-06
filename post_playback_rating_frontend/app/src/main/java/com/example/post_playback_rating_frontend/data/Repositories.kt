@@ -30,9 +30,22 @@ interface AssetsRepository {
 }
 
 // PUBLIC_INTERFACE
-/** RatingRepository provides like/liked states and allows toggling. */
+/** RatingRepository provides rating state and like toggling, with per-content persistence. */
 interface RatingRepository {
+    // PUBLIC_INTERFACE
+    /** Returns whether the user has rated the given content ID. */
+    suspend fun hasRated(contentId: String): Boolean
+
+    // PUBLIC_INTERFACE
+    /** Persists whether the user has rated the given content ID. */
+    suspend fun setRated(contentId: String, rated: Boolean): Boolean
+
+    // PUBLIC_INTERFACE
+    /** Returns whether the user liked the content (love maps to like=true by ViewModel). */
     suspend fun isLiked(contentId: String): Boolean
+
+    // PUBLIC_INTERFACE
+    /** Sets like state for the content (also implies rated=true). */
     suspend fun setLike(contentId: String, liked: Boolean): Boolean
 }
 
@@ -135,6 +148,16 @@ class MockAssetsRepository : AssetsRepository {
 
 class MockRatingRepository : RatingRepository {
     private val likes = HashMap<String, Boolean>()
+    private val rated = HashMap<String, Boolean>()
+
+    override suspend fun hasRated(contentId: String): Boolean {
+        return rated[contentId] ?: false
+    }
+
+    override suspend fun setRated(contentId: String, rated: Boolean): Boolean {
+        this.rated[contentId] = rated
+        return true
+    }
 
     override suspend fun isLiked(contentId: String): Boolean {
         return likes[contentId] ?: false
@@ -142,6 +165,7 @@ class MockRatingRepository : RatingRepository {
 
     override suspend fun setLike(contentId: String, liked: Boolean): Boolean {
         likes[contentId] = liked
+        rated[contentId] = true
         return true
     }
 }

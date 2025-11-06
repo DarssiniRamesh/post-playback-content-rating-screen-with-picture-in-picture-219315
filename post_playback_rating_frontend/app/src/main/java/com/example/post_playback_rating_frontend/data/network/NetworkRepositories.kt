@@ -97,6 +97,20 @@ class NetworkAssetsRepository(
 class NetworkRatingRepository(
     private val api: LikesApi
 ) : RatingRepository {
+    override suspend fun hasRated(contentId: String): Boolean = withIoCatching(false) {
+        // If API only exposes like state, infer rated=true if server has a stored state.
+        // Here we treat the presence of a like state (true/false) as rated; lacking endpoint detail, assume false if request fails.
+        // This simplistic mapping may be revised when backend spec is available.
+        val liked = api.isLiked(contentId).liked
+        liked != null
+    }
+
+    override suspend fun setRated(contentId: String, rated: Boolean): Boolean {
+        // No server endpoint defined in scaffold to set rated-only; no-op success.
+        // If future API supports an explicit rated flag, implement here.
+        return true
+    }
+
     override suspend fun isLiked(contentId: String): Boolean = withIoCatching(false) {
         api.isLiked(contentId).liked ?: false
     }

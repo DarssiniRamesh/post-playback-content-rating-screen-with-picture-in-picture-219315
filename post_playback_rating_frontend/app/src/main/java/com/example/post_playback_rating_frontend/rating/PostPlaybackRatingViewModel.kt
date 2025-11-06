@@ -26,7 +26,7 @@ class PostPlaybackRatingViewModel(application: Application) : AndroidViewModel(a
     private val contentRepo = ServiceLocator.contentRepository()
     private val metadataRepo = ServiceLocator.metadataRepository(application.applicationContext)
     private val assetsRepo = ServiceLocator.assetsRepository()
-    private val ratingRepo = ServiceLocator.ratingRepository()
+    private val ratingRepo = ServiceLocator.ratingRepository(application.applicationContext)
 
     // Simulated current content id and metadata
     private var currentContentId: String = "content-123"
@@ -59,6 +59,14 @@ class PostPlaybackRatingViewModel(application: Application) : AndroidViewModel(a
             rollingCreditsTimeMs = 3_000L // 3s from end begin credits
             displayTimeSec = 10
             maxDisplayTimeSec = 60
+        }
+        // Load persisted rated state for current content id
+        viewModelScope.launch {
+            try {
+                wasRated = ratingRepo.hasRated(currentContentId)
+            } catch (_: Throwable) {
+                // ignore, default false
+            }
         }
     }
 
@@ -141,9 +149,10 @@ class PostPlaybackRatingViewModel(application: Application) : AndroidViewModel(a
 
     private fun handleRatingSelection(like: Boolean, love: Boolean, dislike: Boolean) {
         viewModelScope.launch {
-            // Local in-memory set that marks as rated
+            // Persist locally and mark as rated
             wasRated = true
             ratingRepo.setLike(currentContentId, like || love) // simple mapping for demo
+            ratingRepo.setRated(currentContentId, true)
             cancelCountdown()
             _state.postValue(OverlayState.Closed)
         }
@@ -151,9 +160,17 @@ class PostPlaybackRatingViewModel(application: Application) : AndroidViewModel(a
 
     private fun shouldShowOverlay(): Boolean {
         if (wasRated) return false
+        // Check persisted state (best-effort async refresh for subsequent calls)
+        viewModelScope.launch {
+            try {
+                if (ratingRepo.hasRated(currentContentId)) {
+                    wasRated = true
+                }
+            } catch (_: Throwable) { /* ignore */ }
+        }
+        if (wasRated) return false
         if (wasClosedWithoutRating) {
             // It can show again if rewound before credits and credits are triggered anew
-            // Host will call onCreditsStart() again in that case, so allow showing
             return true
         }
         return true

@@ -31,9 +31,19 @@ object ServiceLocator {
         return MockAssetsRepository()
     }
 
-    fun ratingRepository(): RatingRepository {
+    /**
+     * Returns a RatingRepository that persists locally using SharedPreferences in mock mode.
+     * Uses applicationContext to avoid leaking an Activity.
+     */
+    fun ratingRepository(context: Context? = null): RatingRepository {
         logMockOnce()
-        return MockRatingRepository()
+        // Prefer SharedPreferences-backed repo when a context is available; else fallback to in-memory mock.
+        val appCtx = context?.applicationContext
+        return if (appCtx != null) {
+            LocalPrefsRatingRepository(appCtx)
+        } else {
+            MockRatingRepository()
+        }
     }
 
     // PUBLIC_INTERFACE
