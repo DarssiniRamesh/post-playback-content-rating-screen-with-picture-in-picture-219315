@@ -22,6 +22,13 @@ import com.example.post_playback_rating_frontend.R
  * Figma-focus parity:
  * - Yellow CTA focus ring: drawable adds 4dp white stroke + halo to improve contrast.
  * - DPAD order: Close → Like → Love → Dislike (horizontal), matching guided flow.
+ *
+ * DPAD enhancements implemented:
+ * - Initial focus on Like.
+ * - Wrap-around navigation within actions row (Left from Close -> Dislike, Right from Dislike -> Close).
+ * - DPAD_CENTER/ENTER triggers click on currently focused view.
+ * - BACK closes the overlay and notifies ViewModel.
+ * - Enforce nextFocus relationships in code to complement XML.
  */
 class RatingOverlayFragment : DialogFragment() {
 
@@ -81,6 +88,12 @@ class RatingOverlayFragment : DialogFragment() {
         closeBtn = view.findViewById(R.id.btn_close)
         countdown = view.findViewById(R.id.countdown_label)
 
+        // Ensure focusable for TV
+        likeBtn.isFocusable = true
+        loveBtn.isFocusable = true
+        dislikeBtn.isFocusable = true
+        closeBtn.isFocusable = true
+
         // Accessibility content descriptions (also set in XML for resilience)
         likeBtn.contentDescription = getString(R.string.rating_like)
         loveBtn.contentDescription = getString(R.string.rating_love)
@@ -88,9 +101,9 @@ class RatingOverlayFragment : DialogFragment() {
         closeBtn.contentDescription = getString(R.string.rating_close)
 
         // Focus: default on Like button per acceptance criteria
-        likeBtn.isFocusable = true
         likeBtn.requestFocus()
 
+        // Enforce DPAD order and wrap-around
         setupDpadOrder()
 
         likeBtn.setOnClickListener { vm.onLike(); dismissAllowingStateLoss() }
@@ -125,7 +138,7 @@ class RatingOverlayFragment : DialogFragment() {
             }
         })
 
-        // Key handling for Back to close overlay
+        // Key handling for DPAD and Back to close overlay; ENTER/DPAD_CENTER clicks focused
         view.isFocusableInTouchMode = true
         view.requestFocus()
         view.setOnKeyListener { _, keyCode, event ->
@@ -136,6 +149,61 @@ class RatingOverlayFragment : DialogFragment() {
                         dismissAllowingStateLoss()
                         true
                     }
+                    KeyEvent.KEYCODE_DPAD_CENTER,
+                    KeyEvent.KEYCODE_ENTER -> {
+                        // Trigger click on currently focused control, if any
+                        val focused = dialog?.window?.currentFocus
+                        if (focused != null) {
+                            focused.performClick()
+                            true
+                        } else {
+                            false
+                        }
+                    }
+                    KeyEvent.KEYCODE_DPAD_LEFT -> {
+                        // Manual wrap for left edge (Close <- Dislike)
+                        when {
+                            closeBtn.hasFocus() -> {
+                                dislikeBtn.requestFocus()
+                                true
+                            }
+                            loveBtn.hasFocus() -> {
+                                likeBtn.requestFocus()
+                                true
+                            }
+                            dislikeBtn.hasFocus() -> {
+                                loveBtn.requestFocus()
+                                true
+                            }
+                            likeBtn.hasFocus() -> {
+                                closeBtn.requestFocus()
+                                true
+                            }
+                            else -> false
+                        }
+                    }
+                    KeyEvent.KEYCODE_DPAD_RIGHT -> {
+                        // Manual wrap for right edge (Dislike -> Close)
+                        when {
+                            closeBtn.hasFocus() -> {
+                                likeBtn.requestFocus()
+                                true
+                            }
+                            likeBtn.hasFocus() -> {
+                                loveBtn.requestFocus()
+                                true
+                            }
+                            loveBtn.hasFocus() -> {
+                                dislikeBtn.requestFocus()
+                                true
+                            }
+                            dislikeBtn.hasFocus() -> {
+                                closeBtn.requestFocus()
+                                true
+                            }
+                            else -> false
+                        }
+                    }
                     else -> false
                 }
             } else false
@@ -144,19 +212,27 @@ class RatingOverlayFragment : DialogFragment() {
 
     private fun setupDpadOrder() {
         // Consistent DPAD ordering for predictable navigation:
-        // Horizontal: Close → Like → Love → Dislike (Right)
+        // Horizontal: Close → Like → Love → Dislike
         closeBtn.nextFocusRightId = R.id.btn_like
         likeBtn.nextFocusRightId = R.id.btn_love
         loveBtn.nextFocusRightId = R.id.btn_dislike
+        dislikeBtn.nextFocusRightId = R.id.btn_close // wrap-around to Close
+
         // Reverse (Left)
         dislikeBtn.nextFocusLeftId = R.id.btn_love
         loveBtn.nextFocusLeftId = R.id.btn_like
         likeBtn.nextFocusLeftId = R.id.btn_close
+        closeBtn.nextFocusLeftId = R.id.btn_dislike // wrap-around to Dislike
 
-        // Vertical arrangement: actions row sits below text; keep focus cycling within row
-        closeBtn.nextFocusDownId = R.id.btn_like
-        likeBtn.nextFocusDownId = R.id.btn_love
-        loveBtn.nextFocusDownId = R.id.btn_dislike
-        dislikeBtn.nextFocusDownId = R.id.btn_close
+        // Keep vertical focus cycling within actions row (no escape upward/downward)
+        closeBtn.nextFocusUpId = R.id.btn_close
+        likeBtn.nextFocusUpId = R.id.btn_like
+        loveBtn.nextFocusUpId = R.id.btn_love
+        dislikeBtn.nextFocusUpId = R.id.btn_dislike
+
+        closeBtn.nextFocusDownId = R.id.btn_close
+        likeBtn.nextFocusDownId = R.id.btn_like
+        loveBtn.nextFocusDownId = R.id.btn_love
+        dislikeBtn.nextFocusDownId = R.id.btn_dislike
     }
 }
