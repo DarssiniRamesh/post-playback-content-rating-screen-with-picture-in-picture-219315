@@ -20,10 +20,10 @@ import com.example.post_playback_rating_frontend.ui.IndiceFragment
  * Also acts as RatingOverlayHost and simulates player hooks for demo.
  *
  * Integration requirements fulfilled here:
- * - Triggers rating overlay at rolling credits start and at end of mock playback.
+ * - Simulates playback and triggers rating overlay at rolling credits start (duration-3s) and handles end-of-playback.
  * - Observes ViewModel state to show/hide overlay and route after close.
- * - Consults persisted rating state via ViewModel; no direct network calls.
- * - MOCK MODE remains active; no initialization of network clients.
+ * - Suppresses overlay if LocalPrefsRatingRepository.hasRated(contentId) is true (checked within ViewModel).
+ * - MOCK MODE remains active; no initialization of network clients and no network calls.
  */
 class MainActivity : FragmentActivity(), RatingOverlayHost {
 
@@ -101,6 +101,7 @@ class MainActivity : FragmentActivity(), RatingOverlayHost {
     }
 
     private fun startMockPlayback() {
+        // MOCK-ONLY: Simulate a 30s playback session; no player or network usage.
         isPlaying = true
         creditsStartEmitted = false
         mockPositionMs = 0L
@@ -139,6 +140,7 @@ class MainActivity : FragmentActivity(), RatingOverlayHost {
 
     private fun onCreditsStart() {
         // Let ViewModel decide based on persisted hasRated(contentId)
+        // If user already rated, ViewModel won't emit Visible; overlay stays suppressed.
         ratingVm.onCreditsStart(mockPositionMs)
         // No direct call to show overlay here: observer will show if VM sets Visible
     }
