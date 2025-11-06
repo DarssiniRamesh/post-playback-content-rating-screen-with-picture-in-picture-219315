@@ -32,8 +32,11 @@ class MainActivity : FragmentActivity(), RatingOverlayHost {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Dev indicator: log current data source (Mock/Network)
+        // Dev indicator: log current data source (Mock/Network) and explicit MOCK MODE banner
         val usingMocks = com.example.post_playback_rating_frontend.data.ServiceLocator.useMocks()
+        if (usingMocks) {
+            FeatureFlags.logMockModeIfEnabled()
+        }
         Log.i("MainActivity", "Data source: ${if (usingMocks) "Mock" else "Network"}")
 
         // Load Índice on first launch
